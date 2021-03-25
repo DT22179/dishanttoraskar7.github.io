@@ -41,6 +41,8 @@ $(document).ready(function(){
 	});
 
 	var skillsTopOffset = $(".skillsSection").offset().top;
+	var statsTopOffset = $(".statsSection").offset().top;
+	var countUpFinish = false;
 
 	$(window).scroll(function(){
 
@@ -56,6 +58,19 @@ $(document).ready(function(){
 			   		$(this.el).find('.percent').text(Math.round(percent));
 			   }
 			});
+		}
+
+		if(!countUpFinish && window.pageYOffset > skillsTopOffset - $(window).height() + 250){
+
+			$(".counter").each(function(){
+				var element = $(this);
+				var endVal = parseInt(element.text());
+
+				element.countup(endVal);
+			})
+
+			countUpFinish = true;
+
 		}
 
 	});
